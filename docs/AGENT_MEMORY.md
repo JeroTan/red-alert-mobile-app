@@ -22,11 +22,14 @@ This document serves as a persistent memory for AI agents working on the **red-a
     - `domain/`: Created to house business logic. `domain/user/` is currently initialized but empty.
     - `hooks/`: Custom hooks for color schemes and theme management.
     - `constants/`: Theme definitions.
+- **Key Changes:**
+    - Converted `app.json` to a dynamic and typed `app.config.ts` using `ExpoConfig`.
 - **Dependencies:** React 19, React Native 0.81, Expo 54.
 
 ## 🧠 Learnings & Context
 - The project uses a "Themed" approach for UI components to support dark/light modes out of the box.
 - `expo-router` is used for navigation, favoring a flat file structure within `app/`.
+- `app.config.ts` is now a TypeScript file, allowing for dynamic configuration based on environment variables if needed in the future.
 
 ## 📍 Current Focus / TODOs
 - [ ] Define User domain logic in `domain/user/`.
