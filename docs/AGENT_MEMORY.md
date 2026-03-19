@@ -24,14 +24,22 @@ This document serves as a persistent memory for AI agents working on the **red-a
     - `constants/`: Theme definitions.
 - **Key Changes:**
     - Converted `app.json` to a dynamic and typed `app.config.ts` using `ExpoConfig`.
+    - Refactored Organization domain value objects to be atomic (each in its own file) and organized into subfolders:
+      - `contact/`: `OrganizationPhone`, `OrganizationWebsite`
+      - `location/`: `OrganizationAddress`, `OrganizationBarangay`, `OrganizationCity`, `OrganizationProvince`, `OrganizationRegion`
+      - `status/`: `OrganizationIsActive`
+      - `timestamp/`: `OrganizationCreatedAt`, `OrganizationUpdatedAt`
+      - Root: `OrganizationId`, `OrganizationName`, `OrganizationShortName`, `OrganizationCode`, `OrganizationType`, `OrganizationLevel`
 - **Dependencies:** React 19, React Native 0.81, Expo 54.
 
 ## 🧠 Learnings & Context
 - The project uses a "Themed" approach for UI components to support dark/light modes out of the box.
 - `expo-router` is used for navigation, favoring a flat file structure within `app/`.
 - `app.config.ts` is now a TypeScript file, allowing for dynamic configuration based on environment variables if needed in the future.
+- Domain-Driven Design (DDD) patterns are being applied with a focus on **atomic value objects**. Each property of a domain entity has its own dedicated value object class to ensure strict typing and validation.
 
 ## 📍 Current Focus / TODOs
+- [ ] Implement Organization Entity using the atomic Value Objects.
 - [ ] Define User domain logic in `domain/user/`.
 - [ ] Determine the primary purpose/feature set of "Red Alert" (e.g., notifications, emergency alerts, etc.).
 

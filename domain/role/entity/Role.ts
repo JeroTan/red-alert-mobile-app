@@ -7,3 +7,7 @@ export class Role {
     public name: RoleName,
   ) {}
 }
+
+export class RoleLite {
+  constructor(public name: RoleName) {}
+}
