@@ -14,12 +14,12 @@ export class Session {
     public access_token: SessionAccessToken,
     public refresh_token: SessionRefreshToken,
     public expires_in: SessionExpiresIn,
-    public user: [
-      id: UserId,
-      email: UserEmail,
-      first_name: UserFirstName,
-      last_name: UserLastName,
-      roles: RoleLite[],
-    ],
+    public user: {
+      id: UserId;
+      email: UserEmail;
+      first_name: UserFirstName;
+      last_name: UserLastName;
+      roles: RoleLite[];
+    },
   ) {}
 }

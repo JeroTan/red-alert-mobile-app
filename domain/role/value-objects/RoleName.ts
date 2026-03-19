@@ -11,4 +11,4 @@ const USER_ROLES = [
   "ADMIN",
 ] as const;
 
-type UserRoleType = (typeof USER_ROLES)[number];
+export type UserRoleType = (typeof USER_ROLES)[number];
