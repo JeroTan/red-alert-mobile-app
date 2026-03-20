@@ -32,6 +32,12 @@ This document serves as a persistent memory for AI agents working on the **red-a
       - Root: `OrganizationId`, `OrganizationName`, `OrganizationShortName`, `OrganizationCode`, `OrganizationType`, `OrganizationLevel`
 - **Dependencies:** React 19, React Native 0.81, Expo 54.
 
+### VS Code Integration (March 20, 2026)
+- **Status:** Enhanced developer experience with IDE integration.
+- **Key Changes:**
+    - Installed **Gemini CLI Companion** extension for VS Code.
+    - This enables IDE context sharing (open files, selection) and native diffing support within the CLI.
+
 ## 🧠 Learnings & Context
 - The project uses a "Themed" approach for UI components to support dark/light modes out of the box.
 - `expo-router` is used for navigation, favoring a flat file structure within `app/`.
@@ -44,4 +50,4 @@ This document serves as a persistent memory for AI agents working on the **red-a
 - [ ] Determine the primary purpose/feature set of "Red Alert" (e.g., notifications, emergency alerts, etc.).
 
 ---
-*Last Updated: March 18, 2026*
+*Last Updated: March 20, 2026*
