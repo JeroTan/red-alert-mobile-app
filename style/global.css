@@ -1,0 +1,32 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+
+@theme {
+  /* Brand Colors */
+  --color-brand-primary: #EB0A1E;
+  --color-brand-black: #000000;
+  --color-brand-white: #FFFFFF;
+  --color-brand-gray: #58595B;
+
+  /* Emergency Colors */
+  --color-emergency-critical: #DC2626;
+  --color-emergency-warning: #F59E0B;
+  --color-emergency-success: #10B981;
+  --color-emergency-info: #3B82F6;
+
+  /* Agency Colors */
+  --color-agency-police: #1E40AF;
+  --color-agency-fire: #B91C1C;
+  --color-agency-medical: #059669;
+  --color-agency-disaster: #EA580C;
+
+  /* Font Families */
+  --font-toyota: ToyotaType, sans-serif;
+  --font-toyota-bold: ToyotaType-Bold, sans-serif;
+  --font-toyota-light: ToyotaType-Light, sans-serif;
+  --font-toyota-semibold: ToyotaType-Semibold, sans-serif;
+  --font-toyota-italic: ToyotaType-Italic, sans-serif;
+}
+
+@import "nativewind/theme";

@@ -1,0 +1,38 @@
+export const typography = {
+  fontFamily: {
+    primary: 'ToyotaType',
+    toyota: 'ToyotaType',
+  },
+  fontSize: {
+    h1: 48,
+    h2: 36,
+    h3: 24,
+    h4: 20,
+    bodyLarge: 18,
+    body: 16,
+    bodySmall: 14,
+    caption: 12,
+    button: 16,
+    label: 14,
+  },
+  fontWeight: {
+    light: '300',
+    regular: '400',
+    medium: '500',
+    semibold: '600',
+    bold: '700',
+    black: '900',
+  },
+  lineHeight: {
+    h1: 1.1,
+    h2: 1.2,
+    h3: 1.3,
+    h4: 1.4,
+    bodyLarge: 1.6,
+    body: 1.6,
+    bodySmall: 1.5,
+    caption: 1.4,
+    button: 1,
+    label: 1,
+  },
+};

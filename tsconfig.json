@@ -6,12 +6,22 @@
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "moduleSuffixes": [
+      ".native",
+      ".web",
+      ""
+    ]
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "expo-env.d.ts",
+    "postcss.config.mjs",
+    "nativewind-env.d.ts"
+  ],
+  "exclude": [
+    "app-example"
   ]
 }

@@ -4,6 +4,9 @@ This document serves as a persistent memory for AI agents working on the **red-a
 
 > **CRITICAL INSTRUCTION FOR ALL AI AGENTS:** 
 > Whenever you complete a significant task, learn something new about the project, or implement a core feature, you **MUST** update this document. Keep it concise, structured, and focused on high-signal information.
+>
+> **Memory Update Strategy:**
+> Prioritize incremental updates. When modifying the memory, locate the most relevant existing entry and add specific details. Avoid creating entirely new, dated entries for minor changes unless architecturally significant. Focus on surgical additions and corrections to existing points.
 
 ---
 
@@ -32,22 +35,40 @@ This document serves as a persistent memory for AI agents working on the **red-a
       - Root: `OrganizationId`, `OrganizationName`, `OrganizationShortName`, `OrganizationCode`, `OrganizationType`, `OrganizationLevel`
 - **Dependencies:** React 19, React Native 0.81, Expo 54.
 
-### VS Code Integration (March 20, 2026)
-- **Status:** Enhanced developer experience with IDE integration.
+### Architectural Refactor & Modularization (March 23, 2026)
+- **Status:** **REFACTORED** to Bulletproof React architecture.
 - **Key Changes:**
-    - Installed **Gemini CLI Companion** extension for VS Code.
-    - This enables IDE context sharing (open files, selection) and native diffing support within the CLI.
+    - **Safe Area Fix:** Replaced deprecated/limited `SafeAreaView` with `react-native-safe-area-context`. Added `SafeAreaProvider` to `app/_layout.tsx` and utilized `useSafeAreaInsets` hook in screens for precise notch handling.
+    - **Atomic UI Components:** Created `./components/ui/` with reusable primitives:
+        - `Button` (with icon support), `Badge`, `Card`, `IconButton`, `Map`, `ThemedText`, `ThemedView`.
+    - **Feature-Based Architecture:** Logic and UI split into:
+        - `features/responder/`: Dashboard, Incident Management, Bottom Sheets.
+        - `features/public/`: SOS, Type Selection, Reporting, Tracking simulation.
+    - **TypeScript Support:** Resolved all type errors in the modular components and hooks.
+- **Learnings:**
+    - Always prioritize `SafeAreaProvider` at the root for modern mobile layouts.
+    - Feature-based modularization (Bulletproof React) prevents "monolithic index" issues and improves maintainability.
+    - Component primitives in `components/ui` must be robust enough to handle various prop variants (icons, themes).
 
 ## 🧠 Learnings & Context
-- The project uses a "Themed" approach for UI components to support dark/light modes out of the box.
-- `expo-router` is used for navigation, favoring a flat file structure within `app/`.
-- `app.config.ts` is now a TypeScript file, allowing for dynamic configuration based on environment variables if needed in the future.
-- Domain-Driven Design (DDD) patterns are being applied with a focus on **atomic value objects**. Each property of a domain entity has its own dedicated value object class to ensure strict typing and validation.
+...
+- The "Task -> Review -> Proceed" workflow ensures architectural alignment and high-quality surgical edits.
+- NativeWind's `rounded-full` combined with equal width/height is the standard for circular UI elements in this project.
+- Animations must prioritize `react-native-reanimated` for 60fps performance on the UI thread.
 
-## 📍 Current Focus / TODOs
-- [ ] Implement Organization Entity using the atomic Value Objects.
-- [ ] Define User domain logic in `domain/user/`.
-- [ ] Determine the primary purpose/feature set of "Red Alert" (e.g., notifications, emergency alerts, etc.).
-
+### UI/UX Refinements & Font Integration (March 23, 2026)
+- **Status:** **REFACTORED**
+- **Key Changes Implemented:**
+    - **"Switch to Responder" Button Relocation:** Moved from `features/public/components/SOSButton.tsx` to the top-right of `features/public/components/PublicHeader.tsx`.
+    - **Proper Custom Font Integration ("Toyota Type"):**
+        - Font files (OTF) added to `assets/fonts/toyota-type/`.
+        - `app.config.ts` updated with comprehensive `expo-font` configuration for both Android and iOS, including `fontDefinitions` for weight/style mapping.
+        - `app/_layout.tsx` updated to use `expo-font`'s `useFonts` with OTF files and object configuration (`uri` and `display: FontDisplay.SWAP`).
+        - **Splash Screen Fix:** Refactored `SplashScreen.hideAsync()` to trigger on either `fontsLoaded` or `fontError`.
+        - **Vanilla Style Preference:** `components/ui/ThemedText.tsx` updated to apply `fontFamily: typography.fontFamily.toyota` via vanilla `style` prop instead of Tailwind. This ensures maximum reliability for custom fonts in React Native.
+        - `tailwind.config.js` and `style/typography.ts` updated to maintain consistency.
+- **Resolved Issues:**
+    - **`lucide-react-native` Icon Props:** (fixed by user)
+    - **`MapProps` Definition:** (fixed by user, confirmed by `npm run check`)
 ---
-*Last Updated: March 20, 2026*
+*Last Updated: March 23, 2026*
