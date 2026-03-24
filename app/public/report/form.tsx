@@ -1,10 +1,10 @@
 import PublicContainer from "@/features/public/components/PublicContainer";
-import HomeScreen from "@/features/public/screens/HomeScreen";
+import ReportFormScreen from "@/features/public/screens/ReportFormScreen";
 
-export default function PublicPage() {
+export default function FormPage() {
   return (
     <PublicContainer>
-      <HomeScreen />
+      <ReportFormScreen />
     </PublicContainer>
   );
 }

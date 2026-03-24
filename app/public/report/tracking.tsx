@@ -1,10 +1,10 @@
 import PublicContainer from "@/features/public/components/PublicContainer";
-import HomeScreen from "@/features/public/screens/HomeScreen";
+import TrackingScreen from "@/features/public/screens/TrackingScreen";
 
-export default function PublicPage() {
+export default function TrackingPage() {
   return (
     <PublicContainer>
-      <HomeScreen />
+      <TrackingScreen />
     </PublicContainer>
   );
 }

@@ -1,10 +1,10 @@
 import PublicContainer from "@/features/public/components/PublicContainer";
-import HomeScreen from "@/features/public/screens/HomeScreen";
+import ResolveScreen from "@/features/public/screens/ResolveScreen";
 
-export default function PublicPage() {
+export default function ResolvePage() {
   return (
     <PublicContainer>
-      <HomeScreen />
+      <ResolveScreen />
     </PublicContainer>
   );
 }

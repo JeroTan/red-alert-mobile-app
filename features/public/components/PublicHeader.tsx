@@ -1,5 +1,6 @@
 import HeaderContainer from "@/components/overlay/HeaderContainer";
 import BackButton from "@/components/ready/BackButton";
+import { RefreshCcw } from "lucide-react-native";
 import React from "react";
 import { TouchableOpacity, View } from "react-native";
 import { ThemedText } from "../../../components/ui/ThemedText";
@@ -25,7 +26,11 @@ export function PublicHeader({
       </View>
 
       {onSwitchMode != undefined && (
-        <TouchableOpacity onPress={onSwitchMode} className="p-2">
+        <TouchableOpacity
+          onPress={onSwitchMode}
+          className="p-2 flex flex-row gap-2"
+        >
+          <RefreshCcw size={16} {...{ className: "text-brand-primary" }} />
           <ThemedText className="font-bold text-brand-primary text-xs uppercase">
             Responder
           </ThemedText>

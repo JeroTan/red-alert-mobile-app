@@ -1,25 +1,26 @@
+import { useRouter } from "expo-router";
 import { View } from "react-native";
 import { PublicBottomNav } from "../components/PublicBottomNav";
-import PublicContainer from "../components/PublicContainer";
 import { PublicHeader } from "../components/PublicHeader";
 import { ReportForm } from "../components/ReportForm";
 import { usePublicContext } from "../store/PublicContext";
 
-export default function HomeScreen() {
+export default function ReportFormScreen() {
   const { selectedType, setSelectedType, handleSubmitReport } =
     usePublicContext();
+  const router = useRouter();
   return (
     <>
-      <PublicContainer>
-        <PublicHeader onSwitchMode={() => {}} />
-        <View className="flex-1 bg-app-background">
-          <ReportForm
-            selectedType={selectedType}
-            onSubmit={handleSubmitReport}
-          />
-        </View>
-        <PublicBottomNav activeTab={null} />
-      </PublicContainer>
+      <PublicHeader
+        onBack={() => {
+          router.dismiss();
+        }}
+        hideTitle
+      />
+      <View className="flex-1 bg-app-background">
+        <ReportForm selectedType={selectedType} onSubmit={handleSubmitReport} />
+      </View>
+      <PublicBottomNav activeTab={null} />
     </>
   );
 }

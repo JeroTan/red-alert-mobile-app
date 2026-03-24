@@ -6,7 +6,7 @@ export default function AppRouter() {
   const { mode } = useAppMode();
 
   if (mode === "public") {
-    return <Redirect href="/profile" />;
+    return <Redirect href="/public" />;
   }
   return <Redirect href="/responder" />;
 }

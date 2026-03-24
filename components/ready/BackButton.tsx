@@ -12,7 +12,7 @@ export default function BackButton({
     <>
       {!hide && (
         <TouchableOpacity onPress={onBack} className="mr-3 p-1">
-          <View className="text-app-text-primary -rotate-90">
+          <View className="text-app-text-primary">
             <ArrowLeft size={20} />
           </View>
         </TouchableOpacity>

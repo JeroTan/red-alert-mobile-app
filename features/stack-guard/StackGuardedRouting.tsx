@@ -6,14 +6,15 @@ export default function StackGuardedRouting() {
   return (
     <>
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Protected guard={isLogin}>
-          <Stack.Protected guard={isResponder}>
-            <Stack.Screen name="responder" />
+        {/* <Stack.Protected guard={isLogin}>
+            <Stack.Protected guard={isResponder}>
+              <Stack.Screen name="responder" />
+            </Stack.Protected>
           </Stack.Protected>
-        </Stack.Protected>
-        <Stack.Protected guard={!isLogin}>
-          <Stack.Screen name="auth" />
-        </Stack.Protected>
+          <Stack.Protected guard={!isLogin}>
+            <Stack.Screen name="auth" />
+          </Stack.Protected>
+          <Stack.Screen name="/" /> */}
       </Stack>
     </>
   );

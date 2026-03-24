@@ -11,10 +11,9 @@ import Animated, {
 
 interface SOSButtonProps {
   onPress: () => void;
-  onSwitchMode: () => void;
 }
 
-export function SOSButton({ onPress, onSwitchMode }: SOSButtonProps) {
+export function SOSButton({ onPress }: SOSButtonProps) {
   const pulse = useSharedValue(1);
 
   useEffect(() => {
