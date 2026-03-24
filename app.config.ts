@@ -44,89 +44,89 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       "expo-font",
       {
-        "fonts": [
+        fonts: [
           "./assets/fonts/toyota-type/ToyotaType-Regular.otf",
           "./assets/fonts/toyota-type/ToyotaType-Bold.otf",
           "./assets/fonts/toyota-type/ToyotaType-Light.otf",
           "./assets/fonts/toyota-type/ToyotaType-Semibold.otf",
           "./assets/fonts/toyota-type/ToyotaType-Italic.otf",
-          "./assets/fonts/toyota-type/ToyotaType-SemiboldIt.otf"
+          "./assets/fonts/toyota-type/ToyotaType-SemiboldIt.otf",
         ],
-        "android": {
-          "fonts": [
+        android: {
+          fonts: [
             {
-              "fontFamily": "ToyotaType",
-              "fontDefinitions": [
+              fontFamily: "ToyotaType",
+              fontDefinitions: [
                 {
-                  "path": "./assets/fonts/toyota-type/ToyotaType-Regular.otf",
-                  "weight": 400
+                  path: "./assets/fonts/toyota-type/ToyotaType-Regular.otf",
+                  weight: 400,
                 },
                 {
-                  "path": "./assets/fonts/toyota-type/ToyotaType-Bold.otf",
-                  "weight": 700
+                  path: "./assets/fonts/toyota-type/ToyotaType-Bold.otf",
+                  weight: 700,
                 },
                 {
-                  "path": "./assets/fonts/toyota-type/ToyotaType-Light.otf",
-                  "weight": 300
+                  path: "./assets/fonts/toyota-type/ToyotaType-Light.otf",
+                  weight: 300,
                 },
                 {
-                  "path": "./assets/fonts/toyota-type/ToyotaType-Semibold.otf",
-                  "weight": 600
+                  path: "./assets/fonts/toyota-type/ToyotaType-Semibold.otf",
+                  weight: 600,
                 },
                 {
-                  "path": "./assets/fonts/toyota-type/ToyotaType-Italic.otf",
-                  "weight": 400,
-                  "style": "italic"
+                  path: "./assets/fonts/toyota-type/ToyotaType-Italic.otf",
+                  weight: 400,
+                  style: "italic",
                 },
                 {
-                  "path": "./assets/fonts/toyota-type/ToyotaType-SemiboldIt.otf",
-                  "weight": 600,
-                  "style": "italic"
-                }
-              ]
-            }
-          ]
+                  path: "./assets/fonts/toyota-type/ToyotaType-SemiboldIt.otf",
+                  weight: 600,
+                  style: "italic",
+                },
+              ],
+            },
+          ],
         },
-        "ios": {
-          "fonts": [
+        ios: {
+          fonts: [
             {
-              "fontFamily": "ToyotaType",
-              "fontDefinitions": [
+              fontFamily: "ToyotaType",
+              fontDefinitions: [
                 {
-                  "path": "./assets/fonts/toyota-type/ToyotaType-Regular.otf",
-                  "weight": 400
+                  path: "./assets/fonts/toyota-type/ToyotaType-Regular.otf",
+                  weight: 400,
                 },
                 {
-                  "path": "./assets/fonts/toyota-type/ToyotaType-Bold.otf",
-                  "weight": 700
+                  path: "./assets/fonts/toyota-type/ToyotaType-Bold.otf",
+                  weight: 700,
                 },
                 {
-                  "path": "./assets/fonts/toyota-type/ToyotaType-Light.otf",
-                  "weight": 300
+                  path: "./assets/fonts/toyota-type/ToyotaType-Light.otf",
+                  weight: 300,
                 },
                 {
-                  "path": "./assets/fonts/toyota-type/ToyotaType-Semibold.otf",
-                  "weight": 600
+                  path: "./assets/fonts/toyota-type/ToyotaType-Semibold.otf",
+                  weight: 600,
                 },
                 {
-                  "path": "./assets/fonts/toyota-type/ToyotaType-Italic.otf",
-                  "weight": 400,
-                  "style": "italic"
+                  path: "./assets/fonts/toyota-type/ToyotaType-Italic.otf",
+                  weight: 400,
+                  style: "italic",
                 },
                 {
-                  "path": "./assets/fonts/toyota-type/ToyotaType-SemiboldIt.otf",
-                  "weight": 600,
-                  "style": "italic"
-                }
-              ]
-            }
-          ]
-        }
-      }
+                  path: "./assets/fonts/toyota-type/ToyotaType-SemiboldIt.otf",
+                  weight: 600,
+                  style: "italic",
+                },
+              ],
+            },
+          ],
+        },
+      },
     ],
   ],
   experiments: {
-    typedRoutes: true,
+    typedRoutes: false,
     reactCompiler: true,
   },
 });

@@ -77,7 +77,7 @@ export function PublicHome({ onSwitchMode }: PublicHomeProps) {
 
         {publicStep === 'report-form' && (
           <ScrollView>
-            <ReportForm selectedType={selectedType} onSubmit={handleSubmitReport} />
+            
           </ScrollView>
         )}
 

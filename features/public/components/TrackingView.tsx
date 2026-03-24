@@ -1,3 +1,4 @@
+import { Coordinates } from "@/types/location";
 import {
   Ambulance,
   Flame,
@@ -17,17 +18,17 @@ import type { EmergencyType } from "../types";
 interface TrackingViewProps {
   selectedType: EmergencyType | null;
   progress: number;
-  userLoc: { latitude: number; longitude: number };
-  responderLoc: { latitude: number; longitude: number };
-  hospitalLoc: { latitude: number; longitude: number };
+  userCoordinates: Coordinates;
+  respondentCoordinates: Coordinates;
+  facilityCoordinates: Coordinates;
 }
 
 export function TrackingView({
   selectedType,
   progress,
-  userLoc,
-  responderLoc,
-  hospitalLoc,
+  userCoordinates,
+  respondentCoordinates,
+  facilityCoordinates,
 }: TrackingViewProps) {
   const Icon =
     selectedType === "police"
@@ -81,15 +82,15 @@ export function TrackingView({
       <Map
         className="flex-1"
         initialRegion={{
-          ...userLoc,
+          ...userCoordinates,
           latitudeDelta: 0.015,
           longitudeDelta: 0.015,
         }}
         markers={[
-          { id: "user", coordinate: userLoc, title: "You" },
+          { id: "user", coordinate: userCoordinates, title: "You" },
           {
             id: "responder",
-            coordinate: responderLoc,
+            coordinate: respondentCoordinates,
             title: "Responder",
             icon: (
               <View className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg border-2 border-brand-primary">
@@ -98,8 +99,8 @@ export function TrackingView({
             ),
           },
           {
-            id: "hospital",
-            coordinate: hospitalLoc,
+            id: "facility",
+            coordinate: facilityCoordinates,
             title: "Destination",
             icon: (
               <View className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg border-2 border-emergency-success">

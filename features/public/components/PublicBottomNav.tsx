@@ -1,23 +1,17 @@
+import { Link } from "expo-router";
 import { Home, Settings, User } from "lucide-react-native";
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, View } from "react-native";
 import { cn } from "../../../components/ui/ThemedView";
 
 interface PublicBottomNavProps {
-  activeTab: "home" | "profile" | "settings";
-  onTabPress: (tab: "home" | "profile" | "settings") => void;
+  activeTab: "home" | "profile" | "settings" | null;
 }
 
-export function PublicBottomNav({
-  activeTab,
-  onTabPress,
-}: PublicBottomNavProps) {
+export function PublicBottomNav({ activeTab }: PublicBottomNavProps) {
   return (
-    <View className="flex-row border-t border-gray-200 py-4 bg-white px-12 justify-between items-center">
-      <TouchableOpacity
-        onPress={() => onTabPress("profile")}
-        className="items-center"
-      >
+    <View className="flex-row border-t border-app-background-secondary py-4 bg-app-background px-12 justify-between items-center">
+      <Link href="/public/profile" className="items-center" asChild>
         <User
           size={24}
           {...{ color: activeTab === "profile" ? "#EB0A1E" : "#58595B" }}
@@ -30,12 +24,9 @@ export function PublicBottomNav({
         >
           Profile
         </Text>
-      </TouchableOpacity>
+      </Link>
 
-      <TouchableOpacity
-        onPress={() => onTabPress("home")}
-        className="items-center"
-      >
+      <Link href="/public/home" asChild className="items-center">
         <View
           className={cn(
             "p-2 rounded-full",
@@ -55,12 +46,9 @@ export function PublicBottomNav({
         >
           Home
         </Text>
-      </TouchableOpacity>
+      </Link>
 
-      <TouchableOpacity
-        onPress={() => onTabPress("settings")}
-        className="items-center"
-      >
+      <Link href="/public/settings" asChild className="items-center">
         <Settings
           size={24}
           {...{ color: activeTab === "settings" ? "#EB0A1E" : "#58595B" }}
@@ -73,7 +61,7 @@ export function PublicBottomNav({
         >
           Settings
         </Text>
-      </TouchableOpacity>
+      </Link>
     </View>
   );
 }

@@ -7,13 +7,9 @@ import type { EmergencyType } from "../types";
 
 interface ResolutionSummaryProps {
   selectedType: EmergencyType | null;
-  onBackToHome: () => void;
 }
 
-export function ResolutionSummary({
-  selectedType,
-  onBackToHome,
-}: ResolutionSummaryProps) {
+export function ResolutionSummary({ selectedType }: ResolutionSummaryProps) {
   return (
     <View className="flex-1 justify-center items-center p-6 bg-white dark:bg-black">
       <View className="w-24 h-24 bg-green-100 dark:bg-green-900/30 rounded-full justify-center items-center mb-6">
@@ -60,7 +56,7 @@ export function ResolutionSummary({
       <Button
         label="Back to Home"
         variant="critical"
-        onPress={onBackToHome}
+        onPress={() => {}}
         className="w-full h-14 shadow-lg"
         textClassName="text-lg uppercase tracking-widest"
       />

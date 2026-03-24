@@ -11,31 +11,32 @@
   /* Dark Mode Strategy */
   --dark-mode: class;
   /* Brand Colors */
-  --color-brand-primary: #EB0A1E;
+  --color-brand-primary: #eb0a1e;
   --color-brand-black: #000000;
-  --color-brand-white: #FFFFFF;
-  --color-brand-gray: #58595B;
+  --color-brand-white: #ffffff;
+  --color-brand-gray: #58595b;
 
   /* Emergency Colors */
-  --color-emergency-critical: #DC2626;
-  --color-emergency-warning: #F59E0B;
-  --color-emergency-success: #10B981;
-  --color-emergency-info: #3B82F6;
+  --color-emergency-critical: #dc2626;
+  --color-emergency-warning: #f59e0b;
+  --color-emergency-success: #10b981;
+  --color-emergency-info: #3b82f6;
 
   /* Agency Colors */
-  --color-agency-police: #1E40AF;
-  --color-agency-fire: #B91C1C;
+  --color-agency-police: #1e40af;
+  --color-agency-fire: #b91c1c;
   --color-agency-medical: #059669;
-  --color-agency-disaster: #EA580C;
+  --color-agency-disaster: #ea580c;
 
   /* Adaptive UI Colors (Default to Light Mode) */
-  --color-app-background: #FFFFFF;
-  --color-app-card: #FFFFFF;
+  --color-app-background: #ffffff;
+  --color-app-background-secondary: #f9fafb;
+  --color-app-card: #ffffff;
   --color-app-text-primary: #000000;
-  --color-app-text-secondary: #58595B;
-  --color-app-text-muted: #9CA3AF;
-  --color-app-text-light: #D1D5DB;
-  --color-app-divider: #E5E7EB;
+  --color-app-text-secondary: #58595b;
+  --color-app-text-muted: #9ca3af;
+  --color-app-text-light: #d1d5db;
+  --color-app-divider: #e5e7eb;
 
   /* Font Families */
   --font-toyota: ToyotaType, sans-serif;
@@ -51,13 +52,13 @@
 /* Dark Mode Overrides */
 .dark {
   --color-app-background: #121212;
-  --color-app-card: #1E1E1E;
-  --color-app-text-primary: #FFFFFF;
-  --color-app-text-secondary: #E5E7EB;
-  --color-app-text-muted: #9CA3AF;
-  --color-app-text-light: #4B5563;
+  --color-app-background-secondary: #1f2937;
+  --color-app-card: #1e1e1e;
+  --color-app-text-primary: #ffffff;
+  --color-app-text-secondary: #e5e7eb;
+  --color-app-text-muted: #9ca3af;
+  --color-app-text-light: #4b5563;
   --color-app-divider: #374151;
 }
 
 @import "nativewind/theme";
-

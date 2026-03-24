@@ -1,14 +1,12 @@
-import React from 'react';
-import { useAppMode } from './_layout';
-import { ResponderDashboard } from '../features/responder/screens/ResponderDashboard';
-import { PublicHome } from '../features/public/screens/PublicHome';
+import { useAppMode } from "@/store/state/AppModeContext";
+import { Redirect } from "expo-router";
+import React from "react";
 
 export default function AppRouter() {
-  const { mode, setMode } = useAppMode();
+  const { mode } = useAppMode();
 
-  if (mode === 'public') {
-    return <PublicHome onSwitchMode={() => setMode('responder')} />;
+  if (mode === "public") {
+    return <Redirect href="/profile" />;
   }
-
-  return <ResponderDashboard onSwitchMode={() => setMode('public')} />;
+  return <Redirect href="/responder" />;
 }
