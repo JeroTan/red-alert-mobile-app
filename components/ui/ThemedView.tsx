@@ -13,7 +13,7 @@ export interface ThemedViewProps extends ViewProps {
 export function ThemedView({ className, style, ...props }: ThemedViewProps) {
   return (
     <View
-      className={cn("bg-white dark:bg-black", className)}
+      className={cn("bg-app-background", className)}
       style={style}
       {...props}
     />

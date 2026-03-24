@@ -55,6 +55,8 @@ This document serves as a persistent memory for AI agents working on the **red-a
 - The "Task -> Review -> Proceed" workflow ensures architectural alignment and high-quality surgical edits.
 - NativeWind's `rounded-full` combined with equal width/height is the standard for circular UI elements in this project.
 - Animations must prioritize `react-native-reanimated` for 60fps performance on the UI thread.
+- **CRITICAL:** NEVER suppress, ignore, or hide warnings (e.g., via `LogBox.ignoreLogs` or `console.warn` overrides) without explicit user authorization. Always prioritize fixing the root cause in the implementation. If the warning comes from a third-party dependency, inform the user rather than hiding it.
+- **Styling Preference:** For React Native, **Vanilla Styles (StyleSheet/style prop)** are preferred over TailwindCSS/NativeWind classes when defining font families or cross-platform props like `pointerEvents` to ensure maximum reliability and maintainability.
 
 ### UI/UX Refinements & Font Integration (March 23, 2026)
 - **Status:** **REFACTORED**

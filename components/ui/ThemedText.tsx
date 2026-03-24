@@ -14,7 +14,7 @@ export interface ThemedTextProps extends TextProps {
 export function ThemedText({ className, style, ...props }: ThemedTextProps) {
   return (
     <Text
-      className={cn("text-gray-900 dark:text-white", className)}
+      className={cn("text-app-text-primary", className)}
       style={[
         { fontFamily: typography.fontFamily.toyota },
         style

@@ -2,7 +2,14 @@
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css";
 
+/* Define content sources for Tailwind v4 */
+@source "../app/**/*.{js,jsx,ts,tsx}";
+@source "../components/**/*.{js,jsx,ts,tsx}";
+@source "../features/**/*.{js,jsx,ts,tsx}";
+
 @theme {
+  /* Dark Mode Strategy */
+  --dark-mode: class;
   /* Brand Colors */
   --color-brand-primary: #EB0A1E;
   --color-brand-black: #000000;
@@ -21,6 +28,15 @@
   --color-agency-medical: #059669;
   --color-agency-disaster: #EA580C;
 
+  /* Adaptive UI Colors (Default to Light Mode) */
+  --color-app-background: #FFFFFF;
+  --color-app-card: #FFFFFF;
+  --color-app-text-primary: #000000;
+  --color-app-text-secondary: #58595B;
+  --color-app-text-muted: #9CA3AF;
+  --color-app-text-light: #D1D5DB;
+  --color-app-divider: #E5E7EB;
+
   /* Font Families */
   --font-toyota: ToyotaType, sans-serif;
   --font-toyota-bold: ToyotaType-Bold, sans-serif;
@@ -29,4 +45,19 @@
   --font-toyota-italic: ToyotaType-Italic, sans-serif;
 }
 
+/* Define Dark Mode variant for Tailwind v4 */
+@variant dark (&:where(.dark, .dark *));
+
+/* Dark Mode Overrides */
+.dark {
+  --color-app-background: #121212;
+  --color-app-card: #1E1E1E;
+  --color-app-text-primary: #FFFFFF;
+  --color-app-text-secondary: #E5E7EB;
+  --color-app-text-muted: #9CA3AF;
+  --color-app-text-light: #4B5563;
+  --color-app-divider: #374151;
+}
+
 @import "nativewind/theme";
+
