@@ -2,8 +2,8 @@ import { Ambulance, Flame, Shield } from "lucide-react-native";
 import React from "react";
 import { View } from "react-native";
 import { Badge } from "../../../components/ui/Badge";
-import { Button } from "../../../components/ui/Button";
 import { Card } from "../../../components/ui/Card";
+import { ThemedButton } from "../../../components/ui/ThemedButton";
 import { ThemedText } from "../../../components/ui/ThemedText";
 import { cn } from "../../../components/ui/ThemedView";
 import type { Incident, ResponderStatus } from "../types";
@@ -74,8 +74,8 @@ export function IncidentCard({
         </ThemedText>
 
         <View className="flex-row space-x-3">
-          <Button label="ACCEPT" onPress={onAccept} className="flex-1" />
-          <Button
+          <ThemedButton label="ACCEPT" onPress={onAccept} className="flex-1" />
+          <ThemedButton
             label="DECLINE"
             variant="secondary"
             onPress={onDecline}

@@ -9,8 +9,8 @@ import {
 } from "lucide-react-native";
 import React from "react";
 import { View } from "react-native";
-import { Button } from "../../../components/ui/Button";
 import { Map } from "../../../components/ui/Map";
+import { ThemedButton } from "../../../components/ui/ThemedButton";
 import { ThemedText } from "../../../components/ui/ThemedText";
 import { cn } from "../../../components/ui/ThemedView";
 import type { EmergencyType } from "../types";
@@ -113,13 +113,13 @@ export function TrackingView({
 
       {/* Action Buttons */}
       <View className="p-4 bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700 space-y-3">
-        <Button
+        <ThemedButton
           label="CALL RESPONDER"
           variant="outline"
           icon={<Phone size={20} {...{ color: "#EB0A1E" }} />}
           className="flex-row"
         />
-        <Button
+        <ThemedButton
           label="CHAT WITH DISPATCH"
           variant="outline"
           icon={<MessageCircle size={20} {...{ color: "#EB0A1E" }} />}

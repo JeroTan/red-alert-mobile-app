@@ -1,10 +1,5 @@
-import PublicContainer from "@/features/public/components/PublicContainer";
 import HomeScreen from "@/features/public/screens/HomeScreen";
 
 export default function PublicPage() {
-  return (
-    <PublicContainer>
-      <HomeScreen />
-    </PublicContainer>
-  );
+  return <HomeScreen />;
 }

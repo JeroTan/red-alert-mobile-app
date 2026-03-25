@@ -44,11 +44,15 @@ This document serves as a persistent memory for AI agents working on the **red-a
     - **Feature-Based Architecture:** Logic and UI split into:
         - `features/responder/`: Dashboard, Incident Management, Bottom Sheets.
         - `features/public/`: SOS, Type Selection, Reporting, Tracking simulation.
+    - **Self-Correction & Best Practices:** Acknowledged a significant previous failure where logic was incorrectly consolidated into a monolithic `index.ts` file in the `app/` directory. This violated Expo's file-based routing and modular programming principles. The user has since corrected this by:
+        - Properly utilizing Expo Router's directory structure (e.g., `app/public/`, `app/responder/`).
+        - Separating feature logic into the `features/` directory following the Bulletproof React pattern.
+        - Ensuring screens in `app/` are thin wrappers around feature-based components.
     - **TypeScript Support:** Resolved all type errors in the modular components and hooks.
 - **Learnings:**
+    - **CRITICAL:** Avoid "Monolithic Index" syndrome. Logic must be distributed across modular features to maintain scalability.
+    - Expo Router's directory-based routing is a first-class citizen; respect it by organizing routes into meaningful sub-folders.
     - Always prioritize `SafeAreaProvider` at the root for modern mobile layouts.
-    - Feature-based modularization (Bulletproof React) prevents "monolithic index" issues and improves maintainability.
-    - Component primitives in `components/ui` must be robust enough to handle various prop variants (icons, themes).
 
 ## 🧠 Learnings & Context
 ...
@@ -57,6 +61,7 @@ This document serves as a persistent memory for AI agents working on the **red-a
 - Animations must prioritize `react-native-reanimated` for 60fps performance on the UI thread.
 - **CRITICAL:** NEVER suppress, ignore, or hide warnings (e.g., via `LogBox.ignoreLogs` or `console.warn` overrides) without explicit user authorization. Always prioritize fixing the root cause in the implementation. If the warning comes from a third-party dependency, inform the user rather than hiding it.
 - **Styling Preference:** For React Native, **Vanilla Styles (StyleSheet/style prop)** are preferred over TailwindCSS/NativeWind classes when defining font families or cross-platform props like `pointerEvents` to ensure maximum reliability and maintainability.
+- **Icon Styling:** For `lucide-react-native` (and potentially other icon libraries), use the **spread pattern** for the `color` prop (e.g., `{...{ color: colors.primary }}`) and always reference theme colors from `@/style/colors` instead of hardcoding hex values. This ensures consistent color application and better compatibility with certain JSX parsers/transformers used in the project.
 
 ### UI/UX Refinements & Font Integration (March 23, 2026)
 - **Status:** **REFACTORED**
@@ -72,5 +77,21 @@ This document serves as a persistent memory for AI agents working on the **red-a
 - **Resolved Issues:**
     - **`lucide-react-native` Icon Props:** (fixed by user)
     - **`MapProps` Definition:** (fixed by user, confirmed by `npm run check`)
+### Maps & Media Enhancements (March 25, 2026)
+- **Status:** **IN PROGRESS** (Sprint 3)
+- **Key Changes Implemented:**
+    - **Web Map Implementation:** Refactored `components/ui/Map.web.tsx` to use Google Maps Embed API via `iframe`. It now supports single markers and route visualization (two markers) using the `q` parameter.
+    - **Reusable `ImageInput` Component:** Created `components/form/ImageInput.tsx` utilizing `expo-image-picker`.
+    - **Interactive Location Selection:**
+        - Integrated `expo-location` for cross-platform geolocation and reverse geocoding.
+        - Refactored `features/public/components/ReportLocationInput.tsx` to auto-detect user location.
+        - Added interactive Map selection mode in the report form, allowing users to move the map to pinpoint incidents (Center Crosshair pattern).
+        - Updated `Map.native.tsx` to support `onRegionChangeComplete` and children for overlays.
+    - **Incident Report Refactor:** Updated `features/public/components/ReportPhotoInput.tsx` to use the new `ImageInput` component with `multiInput` enabled.
+- **Technical Decisions:**
+    - **Map Platform Divergence:** Used `iframe` for Web and `react-native-maps` for Native to provide the best possible experience on each platform without complex polyfills.
+    - **Center Crosshair Pattern:** Implemented for location picking to avoid the UX complexity of dragging markers, especially on smaller screens.
+    - **State Management:** Added `userAddress` and `userCoordinates` to `PublicContext` to persist the detected/selected location throughout the reporting flow.
+    - **Web Geocoding Fix:** Implemented a direct fetch to the **Nominatim (OpenStreetMap)** API in `ReportLocationInput.tsx` for Web platforms. This bypasses the `expo-location` limitation/removal of the bundled Google Geocoding service on Web (SDK 49+), ensuring the app remains functional without requiring a Google Maps API key for basic address detection during prototyping.
 ---
-*Last Updated: March 23, 2026*
+*Last Updated: March 25, 2026*

@@ -31,6 +31,8 @@
   /* Adaptive UI Colors (Default to Light Mode) */
   --color-app-background: #ffffff;
   --color-app-background-secondary: #f9fafb;
+  --color-app-background-tertiary: #e5e7eb; /* slightly darker subtle tone */
+  --color-app-background-mute: #d3d4d3; /* for disabled states */
   --color-app-card: #ffffff;
   --color-app-text-primary: #000000;
   --color-app-text-secondary: #58595b;
@@ -53,12 +55,14 @@
 .dark {
   --color-app-background: #121212;
   --color-app-background-secondary: #1f2937;
+  --color-app-background-tertiary: #374151; /* slightly lighter subtle tone */
+  --color-app-background-mute: #2e2e2e; /* for disabled states */
   --color-app-card: #1e1e1e;
   --color-app-text-primary: #ffffff;
   --color-app-text-secondary: #e5e7eb;
   --color-app-text-muted: #9ca3af;
   --color-app-text-light: #4b5563;
-  --color-app-divider: #374151;
+  --color-app-divider: #303d52;
 }
 
 @import "nativewind/theme";

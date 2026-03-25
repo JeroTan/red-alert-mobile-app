@@ -17,6 +17,8 @@ export type PublicContextType = {
   setTrackingProgress: Dispatch<SetStateAction<number>>;
   userCoordinates: Coordinates | null;
   setUserCoordinates: Dispatch<SetStateAction<Coordinates | null>>;
+  userAddress: string | null;
+  setUserAddress: Dispatch<SetStateAction<string | null>>;
   respondentCoordinates: Coordinates | null;
   setRespondentCoordinates: Dispatch<SetStateAction<Coordinates | null>>;
   facilityCoordinates: Coordinates | null;
@@ -38,6 +40,7 @@ export default function PublicContextProvider({
   const [userCoordinates, setUserCoordinates] = useState<Coordinates | null>(
     null,
   );
+  const [userAddress, setUserAddress] = useState<string | null>(null);
   const [respondentCoordinates, setRespondentCoordinates] =
     useState<Coordinates | null>(null);
 
@@ -52,6 +55,8 @@ export default function PublicContextProvider({
     setPublicStep("sos");
     setSelectedType(null);
     setTrackingProgress(0.1);
+    setUserCoordinates(null);
+    setUserAddress(null);
   };
 
   return (
@@ -65,6 +70,8 @@ export default function PublicContextProvider({
         setTrackingProgress,
         userCoordinates,
         setUserCoordinates,
+        userAddress,
+        setUserAddress,
         respondentCoordinates,
         setRespondentCoordinates,
         facilityCoordinates,

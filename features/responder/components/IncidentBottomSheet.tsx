@@ -13,8 +13,8 @@ import {
 } from "lucide-react-native";
 import React, { useMemo } from "react";
 import { TouchableOpacity, useColorScheme, View } from "react-native";
-import { Button } from "../../../components/ui/Button";
 import { IconButton } from "../../../components/ui/IconButton";
+import { ThemedButton } from "../../../components/ui/ThemedButton";
 import { ThemedText } from "../../../components/ui/ThemedText";
 import type { Incident, ResponderStatus } from "../types";
 
@@ -186,7 +186,7 @@ export function IncidentBottomSheet({
             </TouchableOpacity>
           </View>
         ) : (
-          <Button
+          <ThemedButton
             label="Mark as On Scene"
             variant="active"
             onPress={onMarkOnScene}

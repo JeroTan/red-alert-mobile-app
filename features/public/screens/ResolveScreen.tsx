@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import { View } from "react-native";
 import { PublicBottomNav } from "../components/PublicBottomNav";
+import PublicContainer from "../components/PublicContainer";
 import { PublicHeader } from "../components/PublicHeader";
 import { ResolutionSummary } from "../components/ResolutionSummary";
 import { usePublicContext } from "../store/PublicContext";
@@ -15,7 +16,7 @@ export default function ResolveScreen() {
   } = usePublicContext();
   const router = useRouter();
   return (
-    <>
+    <PublicContainer>
       <PublicHeader
         onBack={() => {
           router.dismiss();
@@ -26,6 +27,6 @@ export default function ResolveScreen() {
         <ResolutionSummary selectedType={selectedType} />
       </View>
       <PublicBottomNav activeTab={null} />
-    </>
+    </PublicContainer>
   );
 }

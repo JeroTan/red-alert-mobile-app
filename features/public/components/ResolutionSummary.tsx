@@ -1,7 +1,7 @@
 import { CheckCircle2 } from "lucide-react-native";
 import React from "react";
 import { View } from "react-native";
-import { Button } from "../../../components/ui/Button";
+import { ThemedButton } from "../../../components/ui/ThemedButton";
 import { ThemedText } from "../../../components/ui/ThemedText";
 import type { EmergencyType } from "../types";
 
@@ -53,7 +53,7 @@ export function ResolutionSummary({ selectedType }: ResolutionSummaryProps) {
         </View>
       </View>
 
-      <Button
+      <ThemedButton
         label="Back to Home"
         variant="critical"
         onPress={() => {}}

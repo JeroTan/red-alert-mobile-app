@@ -4,6 +4,7 @@ import { Ambulance, Flame, Shield } from "lucide-react-native";
 import { View } from "react-native";
 import { EmergencyTypeCard } from "../components/EmergencyTypeCard";
 import { PublicBottomNav } from "../components/PublicBottomNav";
+import PublicContainer from "../components/PublicContainer";
 import { PublicHeader } from "../components/PublicHeader";
 import { usePublicContext } from "../store/PublicContext";
 
@@ -11,7 +12,7 @@ export default function IncidentSelectionScreen() {
   const { selectedType, setSelectedType } = usePublicContext();
   const router = useRouter();
   return (
-    <>
+    <PublicContainer>
       <PublicHeader
         onBack={() => {
           router.dismiss();
@@ -19,7 +20,6 @@ export default function IncidentSelectionScreen() {
         hideTitle
       />
       <View className="flex-1 bg-app-background">
-        {" "}
         <View className="p-6">
           <ThemedText className="text-2xl font-bold mb-2">
             What's the emergency?
@@ -37,7 +37,7 @@ export default function IncidentSelectionScreen() {
               icon={Shield}
               isSelected={selectedType === "police"}
               onSelect={(type) => {
-                // setSelectedType(type);
+                setSelectedType(type);
                 router.navigate("/public/report/form");
               }}
             />
@@ -49,7 +49,7 @@ export default function IncidentSelectionScreen() {
               icon={Ambulance}
               isSelected={selectedType === "ambulance"}
               onSelect={(type) => {
-                // setSelectedType(type);
+                setSelectedType(type);
                 router.navigate("/public/report/form");
               }}
             />
@@ -61,7 +61,7 @@ export default function IncidentSelectionScreen() {
               icon={Flame}
               isSelected={selectedType === "fire"}
               onSelect={(type) => {
-                // setSelectedType(type);
+                setSelectedType(type);
                 router.navigate("/public/report/form");
               }}
             />
@@ -69,6 +69,6 @@ export default function IncidentSelectionScreen() {
         </View>
       </View>
       <PublicBottomNav activeTab={null} />
-    </>
+    </PublicContainer>
   );
 }

@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import { View } from "react-native";
 import { PublicBottomNav } from "../components/PublicBottomNav";
+import PublicContainer from "../components/PublicContainer";
 import { PublicHeader } from "../components/PublicHeader";
 import { TrackingView } from "../components/TrackingView";
 import { usePublicContext } from "../store/PublicContext";
@@ -15,7 +16,7 @@ export default function TrackingScreen() {
   } = usePublicContext();
   const router = useRouter();
   return (
-    <>
+    <PublicContainer>
       <PublicHeader
         onBack={() => {
           router.dismiss();
@@ -34,6 +35,6 @@ export default function TrackingScreen() {
         )}
       </View>
       <PublicBottomNav activeTab={null} />
-    </>
+    </PublicContainer>
   );
 }
