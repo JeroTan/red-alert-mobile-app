@@ -3,6 +3,7 @@ import StackGuardedRouting from "@/features/stack-guard/StackGuardedRouting";
 import { useCheckCurrentAuth } from "@/hooks/useCheckCurrentAuth";
 import { useToyotaFonts } from "@/hooks/useToyotaFonts";
 import { AppModeProvider } from "@/store/state/AppModeContext";
+import { ToastContextProvider } from "@/store/state/ToastProviderContext";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { SplashScreen } from "expo-router";
@@ -31,8 +32,10 @@ export default function RootLayout() {
           <AuthContextProvider>
             <AppModeProvider>
               <ThemeProvider value={DefaultTheme}>
-                <StackGuardedRouting />
-                <StatusBar style="dark" />
+                <ToastContextProvider>
+                  <StackGuardedRouting />
+                  <StatusBar style="dark" />
+                </ToastContextProvider>
               </ThemeProvider>
             </AppModeProvider>
           </AuthContextProvider>

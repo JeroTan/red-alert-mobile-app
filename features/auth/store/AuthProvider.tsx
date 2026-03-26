@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useRef, useState } from "react";
 
 export type AuthContextType = {
   isLoggedIn: boolean;
+  setIsLoggedIn: (loggedIn: boolean) => void;
 };
 
 export const AuthContext = createContext<AuthContextType>(null!);
@@ -28,7 +29,7 @@ export default function AuthContextProvider({
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn }}>
+    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );

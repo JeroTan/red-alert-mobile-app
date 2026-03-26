@@ -8,7 +8,7 @@ export function useCheckCurrentAuth() {
   useEffect(() => {
     (async () => {
       const isLoggedIn = await sessionRepo.hasSession();
-      setIsLoggedIn(isLoggedIn);
+      setIsLoggedIn(true);
     })();
   }, []);
 

@@ -62,6 +62,7 @@ This document serves as a persistent memory for AI agents working on the **alert
 - Animations must prioritize `react-native-reanimated` for 60fps performance on the UI thread.
 - **CRITICAL:** NEVER suppress, ignore, or hide warnings (e.g., via `LogBox.ignoreLogs` or `console.warn` overrides) without explicit user authorization. Always prioritize fixing the root cause in the implementation. If the warning comes from a third-party dependency, inform the user rather than hiding it.
 - **Styling Preference:** For React Native, **Vanilla Styles (StyleSheet/style prop)** are preferred over TailwindCSS/NativeWind classes when defining font families or cross-platform props like `pointerEvents` to ensure maximum reliability and maintainability.
+- **`pointerEvents` Usage:** Do NOT use `pointerEvents` as a direct prop on components (e.g., `<View pointerEvents="none">`) as it is considered deprecated/problematic in some contexts. Instead, always include it within the **style prop** (e.g., `<View style={{ pointerEvents: "none" }}>`).
 - **Icon Styling:** For `lucide-react-native` (and potentially other icon libraries), use the **spread pattern** for the `color` prop (e.g., `{...{ color: colors.primary }}`) and always reference theme colors from `@/style/colors` instead of hardcoding hex values. This ensures consistent color application and better compatibility with certain JSX parsers/transformers used in the project.
 
 ### UI/UX Refinements & Font Integration (March 23, 2026)
@@ -125,5 +126,24 @@ This document serves as a persistent memory for AI agents working on the **alert
     - **Library Bundling Issues:** Hardcoded `require` calls in library source code (especially for assets) can break Metro bundling if paths don't match the local environment.
     - **Custom Bridge Solution:** Implementing a custom `WebView` bridge provides more control over asset resolution and avoids reliance on brittle third-party internals.
     - **Asset Path Stability:** Placing assets in a dedicated subfolder (e.g., `assets/leaflet/index.html`) is cleaner than root-level placement.
+
+### Authentication UI Implementation (March 26, 2026)
+- **Status:** **REFACTORED** (Sprint 4)
+- **Key Changes Implemented:**
+    - **Login & Registration Components:** 
+        - Implemented `LoginForm` and `RegistrationForm` in `features/auth/registration/`.
+        - Developed `LoginScreen` and `RegistrationScreen` in `features/auth/screens/`.
+    - **Branding Integration:** 
+        - Applied `ALERTAP` branding with `brand-primary` (#eb0a1e) and `font-black` headers.
+        - Created a consistent visual identity across auth screens using `ThemedView` and `ThemedText`.
+    - **Routing Configuration:** 
+        - Integrated screens into `app/auth/` using Expo Router.
+        - `app/auth/index.tsx` now correctly points to the `LoginScreen`.
+    - **Interaction Design:** 
+        - Used `ScrollView` for keyboard-friendly form layouts.
+        - Included placeholder comments for future validation and API integration as requested.
+- **Learnings:**
+    - **Consistent Form Layout:** Using a combination of `ThemedText` for labels and custom-styled `View` containers for inputs ensures a professional look while maintaining theme compatibility.
+    - **Icon Usage:** Continued the practice of using the spread pattern for Lucide icon colors to ensure compatibility.
 ---
 *Last Updated: March 26, 2026*

@@ -54,12 +54,19 @@ export class AuthRepositoryAPI implements AuthRepository {
     email: UserEmail;
     password: UserPassword;
   }) {
-    const result = await redAlrertApiAxios.post("/auth/auth/login", {
+    const result = await redAlrertApiAxios.post("/auth/login", {
       email: form.email.value,
       password: form.password.value,
     });
     if (result.status !== 200) {
-      throw new LogicError("Failed to sign in" as const, "UNKNOWN" as const);
+      const errorMessages = {
+        404: "User not found",
+        401: "Invalid credentials",
+      };
+      throw new LogicError(
+        `Failed to sign in: ${errorMessages[result.status as keyof typeof errorMessages] ?? "Unknown Error"}`,
+        "UNKNOWN" as const,
+      );
     }
     return new Session(
       new SessionId(uuid.v4()),

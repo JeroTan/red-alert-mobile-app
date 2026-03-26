@@ -16,7 +16,7 @@ export default function StackGuardedRouting() {
         <Stack.Protected guard={!isLoggedIn}>
           <Stack.Screen name="auth" />
         </Stack.Protected>
-        <Stack.Screen />
+        <Stack.Screen name="index" />
       </Stack>
     </>
   );

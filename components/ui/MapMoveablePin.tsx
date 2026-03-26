@@ -39,7 +39,7 @@ export function MapMoveablePin({
     <View className="relative w-full h-full">
       {mapChild}
       <View
-        pointerEvents="none"
+        style={{ pointerEvents: "none" }}
         className="absolute inset-0 items-center justify-center"
       >
         <View style={{ marginBottom: 32 }}>

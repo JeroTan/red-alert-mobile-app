@@ -10,16 +10,33 @@ import { UserEmail } from "@/domain/user/value-objects/UserEmail";
 import { UserFirstName } from "@/domain/user/value-objects/UserFirstName";
 import { UserId } from "@/domain/user/value-objects/UserId";
 import { UserLastName } from "@/domain/user/value-objects/UserLastName";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SecureStore from "expo-secure-store";
+import { Platform } from "react-native";
 
 export class SessionRepositoryApi implements SessionRepository {
   async clearSession(): Promise<void> {}
   async hasSession(): Promise<boolean> {
-    const session = await SecureStore.getItemAsync("session");
-    return !!session;
+    try {
+      if (Platform.OS === "web") {
+        const session = await AsyncStorage.getItem("session");
+        return !!session;
+      } else {
+        const session = await SecureStore.getItemAsync("session");
+        return !!session;
+      }
+    } catch (error) {
+      console.error("Error checking session:", error);
+      return false;
+    }
   }
   async getSession(): Promise<Session> {
-    const sessionResult = await SecureStore.getItemAsync("session");
+    let sessionResult: string | null = null;
+    if (Platform.OS === "web") {
+      sessionResult = await AsyncStorage.getItem("session");
+    } else {
+      sessionResult = await SecureStore.getItemAsync("session");
+    }
     if (!sessionResult) {
       throw new Error("No session found.");
     }
@@ -44,6 +61,10 @@ export class SessionRepositoryApi implements SessionRepository {
     return session;
   }
   async storeSession(session: Session): Promise<void> {
-    await SecureStore.setItemAsync("session", JSON.stringify(session));
+    if (Platform.OS === "web") {
+      await AsyncStorage.setItem("session", JSON.stringify(session));
+    } else {
+      await SecureStore.setItemAsync("session", JSON.stringify(session));
+    }
   }
 }

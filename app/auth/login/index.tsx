@@ -1,5 +1,5 @@
 import LoginScreen from "@/features/auth/screens/LoginScreen";
 
-export default function AuthPage() {
+export default function LoginPage() {
   return <LoginScreen />;
 }

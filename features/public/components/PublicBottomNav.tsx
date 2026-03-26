@@ -1,3 +1,4 @@
+import { useAuthContext } from "@/features/auth/store/AuthProvider";
 import { Link } from "expo-router";
 import { Home, Settings, User } from "lucide-react-native";
 import React from "react";
@@ -9,9 +10,10 @@ interface PublicBottomNavProps {
 }
 
 export function PublicBottomNav({ activeTab }: PublicBottomNavProps) {
+  const { isLoggedIn } = useAuthContext();
   return (
     <View className="flex-row border-t border-app-background-secondary py-4 bg-app-background px-12 justify-between items-center">
-      <Link href="/public/profile">
+      <Link href={isLoggedIn ? "/public/profile" : "/auth"}>
         <TouchableOpacity className="items-center">
           <User
             size={24}
@@ -23,7 +25,7 @@ export function PublicBottomNav({ activeTab }: PublicBottomNavProps) {
               activeTab === "profile" ? "text-brand-primary" : "text-gray-400",
             )}
           >
-            Profile
+            {isLoggedIn ? "Profile" : "Login"}
           </Text>
         </TouchableOpacity>
       </Link>
