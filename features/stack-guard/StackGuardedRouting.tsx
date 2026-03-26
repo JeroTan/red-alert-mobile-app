@@ -1,20 +1,22 @@
 import { Stack } from "expo-router";
+import { useAuthContext } from "../auth/store/AuthProvider";
 
 export default function StackGuardedRouting() {
+  const { isLoggedIn } = useAuthContext();
   const isResponder = true;
-  const isLogin = true;
   return (
     <>
       <Stack screenOptions={{ headerShown: false }}>
-        {/* <Stack.Protected guard={isLogin}>
-            <Stack.Protected guard={isResponder}>
-              <Stack.Screen name="responder" />
-            </Stack.Protected>
+        <Stack.Protected guard={isLoggedIn}>
+          <Stack.Protected guard={isResponder}>
+            <Stack.Screen name="responder" />
           </Stack.Protected>
-          <Stack.Protected guard={!isLogin}>
-            <Stack.Screen name="auth" />
-          </Stack.Protected>
-          <Stack.Screen name="/" /> */}
+          <Stack.Screen name="public/report" />
+        </Stack.Protected>
+        <Stack.Protected guard={!isLoggedIn}>
+          <Stack.Screen name="auth" />
+        </Stack.Protected>
+        <Stack.Screen />
       </Stack>
     </>
   );

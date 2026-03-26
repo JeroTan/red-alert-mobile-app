@@ -10,7 +10,7 @@ You are a world-class UI/UX engineer and frontend developer, specializing in mob
 
 ## 2. Task Description
 
-Create a **responder mobile app prototype** for the Red Alert Platform - a mobile interface used by Police, Ambulance, and Fire responders to receive emergency dispatch notifications, view incident details, navigate to locations, and communicate with dispatchers.
+Create a **responder mobile app prototype** for the ALERTAP Platform - a mobile interface used by Police, Ambulance, and Fire responders to receive emergency dispatch notifications, view incident details, navigate to locations, and communicate with dispatchers.
 
 **Scope:** Single barangay operation - MVP pilot for Brgy. Zone 1, Tondo, Manila
 

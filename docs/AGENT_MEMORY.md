@@ -1,6 +1,6 @@
 # Agent Memory
 
-This document serves as a persistent memory for AI agents working on the **red-alert-mobile-app** project. It tracks important architectural decisions, implementations, learnings, and project evolution to ensure continuity across different machines, agents, or sessions.
+This document serves as a persistent memory for AI agents working on the **alertap-mobile-app** project. It tracks important architectural decisions, implementations, learnings, and project evolution to ensure continuity across different machines, agents, or sessions.
 
 > **CRITICAL INSTRUCTION FOR ALL AI AGENTS:** 
 > Whenever you complete a significant task, learn something new about the project, or implement a core feature, you **MUST** update this document. Keep it concise, structured, and focused on high-signal information.
@@ -11,7 +11,8 @@ This document serves as a persistent memory for AI agents working on the **red-a
 ---
 
 ## 🚀 Project Overview
-- **Name:** red-alert-mobile-app
+- **Name:** alertap-mobile-app
+- **Brand:** ALERTAP
 - **Stack:** Expo (React Native), TypeScript, Expo Router (File-based routing).
 - **Architecture:** Transitioning towards a domain-driven structure (see `domain/` folder).
 

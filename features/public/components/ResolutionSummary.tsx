@@ -20,7 +20,7 @@ export function ResolutionSummary({ selectedType }: ResolutionSummaryProps) {
         RESOLVED
       </ThemedText>
       <ThemedText className="text-gray-500 dark:text-gray-400 text-center mb-10 px-8">
-        Thank you for using Red Alert. The incident has been safely resolved by
+        Thank you for using ALERTAP. The incident has been safely resolved by
         our team in Brgy. Zone 1, Tondo.
       </ThemedText>
 

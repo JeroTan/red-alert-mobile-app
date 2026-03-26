@@ -3,7 +3,7 @@
 ## As a responder, I want to see a map-focused dashboard with my current status so that I can quickly understand my surroundings.
 
 ## Acceptance Criteria
-- [x] Header (Top Left) displays "Red Alert" only.
+- [x] Header (Top Left) displays "ALERTAP" only.
 - [x] Map View (45% height) showing the responder's current location.
 - [x] Temporary "Switch to Public" toggle for UI testing.
 - [x] Bottom Status Toggle (60px) with "Available", "En Route", and "On Scene".

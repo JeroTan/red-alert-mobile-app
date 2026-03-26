@@ -21,7 +21,7 @@ export function PublicHeader({
       <View className="flex-row items-center flex-1">
         <BackButton hide={onBack == undefined} onBack={onBack} />
         {!hideTitle && (
-          <ThemedText className="text-xl font-bold">Red Alert</ThemedText>
+          <ThemedText className="text-xl font-bold">ALERTAP</ThemedText>
         )}
       </View>
 

@@ -22,4 +22,8 @@ export class Session {
       roles: RoleLite[];
     },
   ) {}
+
+  isExpired() {
+    return this.expires_in.value.getTime() < new Date().getTime();
+  }
 }

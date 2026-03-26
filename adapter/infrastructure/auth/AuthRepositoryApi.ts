@@ -11,8 +11,6 @@ import { EmergencyContactId } from "@/domain/emergency-contact/value-objects/Eme
 import { EmergencyContactName } from "@/domain/emergency-contact/value-objects/EmergencyContactName";
 import { EmergencyContactPhone } from "@/domain/emergency-contact/value-objects/EmergencyContactPhone";
 import { EmergencyContactRelationship } from "@/domain/emergency-contact/value-objects/EmergencyContactRelationship";
-import { LogicError } from "@/domain/error/entity/LogicError";
-import { LogicErrorCode } from "@/domain/error/value-objects/LogicErrorCode";
 import { OrganizationLite } from "@/domain/organization/entity/OrganizationLite";
 import { OrganizationId } from "@/domain/organization/value-objects/OrganizationId";
 import {
@@ -48,6 +46,7 @@ import { UserPhone } from "@/domain/user/value-objects/UserPhone";
 import { UserProfileImage } from "@/domain/user/value-objects/UserProfileImage";
 import { UserProfileImageUrl } from "@/domain/user/value-objects/UserProfileImageUrl";
 import { redAlrertApiAxios } from "@/library/axios";
+import { LogicError } from "@/utilities/error/LogicError";
 import uuid from "react-native-uuid";
 
 export class AuthRepositoryAPI implements AuthRepository {
@@ -60,10 +59,7 @@ export class AuthRepositoryAPI implements AuthRepository {
       password: form.password.value,
     });
     if (result.status !== 200) {
-      throw new LogicError(
-        "Failed to sign in" as const,
-        new LogicErrorCode("UNKNOWN"),
-      );
+      throw new LogicError("Failed to sign in" as const, "UNKNOWN" as const);
     }
     return new Session(
       new SessionId(uuid.v4()),
@@ -106,7 +102,7 @@ export class AuthRepositoryAPI implements AuthRepository {
     if (result.status !== 201) {
       throw new LogicError(
         "Failed to register user" as const,
-        new LogicErrorCode("UNKNOWN"),
+        "UNKNOWN" as const,
       );
     }
 

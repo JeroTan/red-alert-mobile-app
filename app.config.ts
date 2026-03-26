@@ -2,12 +2,12 @@ import { ConfigContext, ExpoConfig } from "expo/config";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: "red-alert-mobile-app",
-  slug: "red-alert-mobile-app",
+  name: "alertap-mobile-app",
+  slug: "alertap-mobile-app",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/images/icon.png",
-  scheme: "redalertmobileapp",
+  scheme: "alertapmobileapp",
   userInterfaceStyle: "light",
   newArchEnabled: true,
   ios: {

@@ -3,7 +3,7 @@
 ---
 
 ## 1. Project Overview
-- **Name:** Red Alert Public (Citizen)
+- **Name:** ALERTAP Public (Citizen)
 - **Platform:** iOS & Android (Expo)
 - **Primary Goal:** A high-speed, one-tap emergency reporting interface for citizens in Brgy. Zone 1, Tondo, Manila.
 - **Design Style:** Toyota Mobility Style - simple, professional, high-contrast actions.
@@ -26,7 +26,7 @@
 
 ```
 ┌─────────────────────────────────────────┐
-│  Red Alert                              │
+│  ALERTAP                              │
 │                                         │
 │  [Switch to Responder 🔄] (Temporary)   │
 │                                         │
@@ -50,7 +50,7 @@
 ```
 
 **Layout Specifications:**
-- **Header (Top Left):** "Red Alert" text only.
+- **Header (Top Left):** "ALERTAP" text only.
 - **Top Right:** Empty (Settings moved to bottom).
 - **Responder Toggle:** Temporary button to switch between Public and Responder modes for UI testing.
 - **Bottom Navigation:** Three-tab layout: Profile (Left), Home (Center), Settings (Right).

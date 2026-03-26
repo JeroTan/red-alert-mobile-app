@@ -1,9 +1,9 @@
 import uuid from "react-native-uuid";
-import { LogicErrorCode } from "../value-objects/LogicErrorCode";
+import { LogicErrorCodeType } from "./types";
 export class LogicError<T> {
   constructor(
     public data: T,
-    public code: LogicErrorCode,
+    public code: LogicErrorCodeType,
     public id = uuid.v4(),
   ) {}
 }

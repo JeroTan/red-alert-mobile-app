@@ -11,7 +11,7 @@ interface ResponderHeaderProps {
 export function ResponderHeader({ onSwitchMode }: ResponderHeaderProps) {
   return (
     <View className="h-14 px-4 flex-row justify-between items-center border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
-      <ThemedText className="text-xl font-bold">Red Alert</ThemedText>
+      <ThemedText className="text-xl font-bold">ALERTAP</ThemedText>
       <View className="flex-row items-center">
         <IconButton
           onPress={onSwitchMode}

@@ -1,6 +1,6 @@
 # Knowledge Notes (Learning React Native)
 
-This document tracks high-level concepts, architectural patterns, and specialized React Native knowledge for the **red-alert-mobile-app** project.
+This document tracks high-level concepts, architectural patterns, and specialized React Native knowledge for the **alertap-mobile-app** project.
 
 ---
 

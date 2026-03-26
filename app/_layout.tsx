@@ -1,4 +1,6 @@
+import AuthContextProvider from "@/features/auth/store/AuthProvider";
 import StackGuardedRouting from "@/features/stack-guard/StackGuardedRouting";
+import { useCheckCurrentAuth } from "@/hooks/useCheckCurrentAuth";
 import { useToyotaFonts } from "@/hooks/useToyotaFonts";
 import { AppModeProvider } from "@/store/state/AppModeContext";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
@@ -17,17 +19,23 @@ export default function RootLayout() {
   if (!fontResult) {
     return null; // Render nothing, splash screen is visible
   }
+  const authResult = useCheckCurrentAuth();
+  if (authResult === null) {
+    return null; // Render nothing, splash screen is visible
+  }
 
   return (
     <SafeAreaProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <BottomSheetModalProvider>
-          <AppModeProvider>
-            <ThemeProvider value={DefaultTheme}>
-              <StackGuardedRouting />
-              <StatusBar style="dark" />
-            </ThemeProvider>
-          </AppModeProvider>
+          <AuthContextProvider>
+            <AppModeProvider>
+              <ThemeProvider value={DefaultTheme}>
+                <StackGuardedRouting />
+                <StatusBar style="dark" />
+              </ThemeProvider>
+            </AppModeProvider>
+          </AuthContextProvider>
         </BottomSheetModalProvider>
       </GestureHandlerRootView>
     </SafeAreaProvider>
