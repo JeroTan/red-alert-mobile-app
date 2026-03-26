@@ -87,26 +87,18 @@ export function TrackingView({
           longitudeDelta: 0.015,
         }}
         markers={[
-          { id: "user", coordinate: userCoordinates, title: "You" },
+          { id: "user", coordinate: userCoordinates, title: "You", icon: "👤" },
           {
             id: "responder",
             coordinate: respondentCoordinates,
             title: "Responder",
-            icon: (
-              <View className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg border-2 border-brand-primary">
-                <Icon size={20} {...{ color: "#EB0A1E" }} />
-              </View>
-            ),
+            icon: selectedType === "ambulance" ? "🚑" : selectedType === "police" ? "🚓" : "🚒",
           },
           {
             id: "facility",
             coordinate: facilityCoordinates,
             title: "Destination",
-            icon: (
-              <View className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-lg border-2 border-emergency-success">
-                <Home size={20} {...{ color: "#059669" }} />
-              </View>
-            ),
+            icon: "🏥",
           },
         ]}
       />

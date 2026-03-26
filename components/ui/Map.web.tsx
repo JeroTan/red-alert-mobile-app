@@ -1,12 +1,17 @@
+import { colors } from "@/style/colors";
 import { Coordinates } from "@/types/location";
-import React, { useMemo } from "react";
-import { Dimensions, View } from "react-native";
+import { Asset } from "expo-asset";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, Dimensions, View } from "react-native";
+import LeafletView, { WebViewLeafletEvents } from "./LeafletView";
 import { cn } from "./ThemedView";
 
 interface MapProps {
   height?: number;
   className?: string;
-  initialRegion?: Coordinates & {
+  initialRegion?: {
+    latitude: number;
+    longitude: number;
     latitudeDelta?: number;
     longitudeDelta?: number;
   };
@@ -15,57 +20,95 @@ interface MapProps {
     coordinate: Coordinates;
     title: string;
     description?: string;
-    icon?: React.ReactNode;
+    icon?: string;
   }>;
+  onRegionChangeComplete?: (region: {
+    latitude: number;
+    longitude: number;
+    latitudeDelta: number;
+    longitudeDelta: number;
+  }) => void;
+  children?: React.ReactNode;
+  zoom?: number;
 }
 
 export function Map({
   height,
   className,
+  markers,
   initialRegion,
-  markers = [],
+  onRegionChangeComplete,
+  children,
+  zoom = 15,
 }: MapProps) {
+  const [mapSource, setMapSource] = useState<{ uri: string } | null>(null);
   const defaultHeight = Dimensions.get("window").height * 0.45;
 
-  const mapUrl = useMemo(() => {
-    const baseUrl = "https://www.google.com/maps?output=embed";
-
-    // Scenario 1: Route (Exactly 2 markers)
-    if (markers.length === 2) {
-      const origin = `${markers[0].coordinate.latitude},${markers[0].coordinate.longitude}`;
-      const destination = `${markers[1].coordinate.latitude},${markers[1].coordinate.longitude}`;
-      // Note: Google Maps Embed with q=from+to works well for simple routes
-      return `${baseUrl}&q=${origin}+to+${destination}`;
+  useEffect(() => {
+    async function loadMap() {
+      try {
+        const asset = Asset.fromModule(require("@/assets/leaflet/index.html"));
+        await asset.downloadAsync();
+        if (asset.uri) {
+          setMapSource({ uri: asset.uri });
+        }
+      } catch (error) {
+        console.error("Error loading leaflet asset on web:", error);
+      }
     }
+    loadMap();
+  }, []);
 
-    // Scenario 2: Single Marker (1 marker)
-    if (markers.length === 1) {
-      const lat = markers[0].coordinate.latitude;
-      const lng = markers[0].coordinate.longitude;
-      return `${baseUrl}&q=${lat},${lng}`;
-    }
+  const mapCenter = initialRegion
+    ? { lat: initialRegion.latitude, lng: initialRegion.longitude }
+    : { lat: 14.6121, lng: 120.9723 };
 
-    // Scenario 3: No Markers (Use initialRegion or default)
-    const lat = initialRegion?.latitude || 14.5995; // Default to Manila
-    const lng = initialRegion?.longitude || 120.9842;
-    return `${baseUrl}&q=${lat},${lng}`;
-  }, [markers, initialRegion]);
+  const mapMarkers = markers?.map((m) => ({
+    id: m.id,
+    position: { lat: m.coordinate.latitude, lng: m.coordinate.longitude },
+    title: m.title,
+    icon: m.icon || "📍",
+  }));
+
+  if (!mapSource) {
+    return (
+      <View
+        style={{ height: height || defaultHeight }}
+        className={cn("items-center justify-center bg-gray-100", className)}
+      >
+        <ActivityIndicator color={colors.primary} />
+      </View>
+    );
+  }
 
   return (
     <View
       style={{ height: height || defaultHeight }}
-      className={cn("overflow-hidden bg-gray-100 dark:bg-gray-800", className)}
+      className={cn("overflow-hidden relative bg-gray-100", className)}
     >
-      <iframe
-        src={mapUrl}
-        width="100%"
-        height="100%"
-        style={{ border: 0 }}
-        allowFullScreen
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-        title="Google Map"
+      <LeafletView
+        doDebug={false}
+        mapCenterPosition={mapCenter}
+        zoom={zoom}
+        mapMarkers={mapMarkers}
+        source={mapSource}
+        onMessageReceived={(message: any) => {
+          if (
+            message.event === WebViewLeafletEvents.ON_MOVE_END &&
+            message.payload?.mapCenterPosition &&
+            onRegionChangeComplete
+          ) {
+            const { lat, lng } = message.payload.mapCenterPosition;
+            onRegionChangeComplete({
+              latitude: lat,
+              longitude: lng,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01,
+            });
+          }
+        }}
       />
+      {children}
     </View>
   );
 }

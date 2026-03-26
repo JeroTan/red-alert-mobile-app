@@ -1,6 +1,8 @@
 import { Map } from "@/components/ui/Map";
+import { MapMoveablePin } from "@/components/ui/MapMoveablePin";
 import { ThemedText } from "@/components/ui/ThemedText";
 import { colors } from "@/style/colors";
+import { Coordinates } from "@/types/location";
 import * as Location from "expo-location";
 import { MapPin, X } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
@@ -51,10 +53,7 @@ export default function ReportLocationInput() {
     }
   };
 
-  const updateAddress = async (coords: {
-    latitude: number;
-    longitude: number;
-  }) => {
+  const updateAddress = async (coords: Coordinates) => {
     try {
       if (Platform.OS === "web") {
         const response = await fetch(
@@ -104,13 +103,9 @@ export default function ReportLocationInput() {
     }
   };
 
-  const handleRegionChangeComplete = (region: any) => {
-    const newCoords = {
-      latitude: region.latitude,
-      longitude: region.longitude,
-    };
-    setUserCoordinates(newCoords);
-    updateAddress(newCoords);
+  const handlePinChange = (coords: Coordinates) => {
+    setUserCoordinates(coords);
+    updateAddress(coords);
   };
 
   if (showMap && userCoordinates) {
@@ -126,28 +121,16 @@ export default function ReportLocationInput() {
         </View>
 
         <View className="rounded-xl overflow-hidden border border-app-divider relative">
-          <Map
-            height={200}
-            initialRegion={{
-              ...userCoordinates,
-              latitudeDelta: 0.005,
-              longitudeDelta: 0.005,
-            }}
-            onRegionChangeComplete={handleRegionChangeComplete}
-          >
-            {/* Center Crosshair Overlay */}
-            <View
-              pointerEvents="none"
-              className="absolute inset-0 items-center justify-center"
-            >
-              <View className="mb-8">
-                <MapPin
-                  size={32}
-                  {...{ color: colors.primary, fill: colors.primary }}
-                />
-              </View>
-            </View>
-          </Map>
+          <MapMoveablePin onPinChange={handlePinChange}>
+            <Map
+              height={200}
+              initialRegion={{
+                ...userCoordinates,
+                latitudeDelta: 0.005,
+                longitudeDelta: 0.005,
+              }}
+            />
+          </MapMoveablePin>
         </View>
         <ThemedText className="text-xs text-app-text-muted mt-2 text-center">
           Move the map to align the pin with the incident

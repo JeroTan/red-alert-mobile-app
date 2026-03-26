@@ -78,20 +78,51 @@ This document serves as a persistent memory for AI agents working on the **red-a
     - **`lucide-react-native` Icon Props:** (fixed by user)
     - **`MapProps` Definition:** (fixed by user, confirmed by `npm run check`)
 ### Maps & Media Enhancements (March 25, 2026)
-- **Status:** **IN PROGRESS** (Sprint 3)
+- **Status:** **REFACTORED** (Sprint 3)
 - **Key Changes Implemented:**
+    - **Permissions & Configuration:**
+        - Updated `app.config.ts` with iOS `NSLocationWhenInUseUsageDescription`.
+        - Added Android permissions: `ACCESS_COARSE_LOCATION`, `ACCESS_FINE_LOCATION`, and `FOREGROUND_SERVICE`.
+    - **Route & Layout Refactor:**
+        - Simplified `app/public/` route files by removing `PublicContainer` wrappers, moving them into feature screens for better modularity.
+        - Created `app/public/report/_layout.tsx` with a persistent `PublicContextProvider` for the reporting flow.
     - **Web Map Implementation:** Refactored `components/ui/Map.web.tsx` to use Google Maps Embed API via `iframe`. It now supports single markers and route visualization (two markers) using the `q` parameter.
-    - **Reusable `ImageInput` Component:** Created `components/form/ImageInput.tsx` utilizing `expo-image-picker`.
+    - **Reusable `ImageInput` Component:** Created `components/form/ImageInput.tsx` utilizing `expo-image-picker`. Supports single/multiple images, previews, and removal functionality.
     - **Interactive Location Selection:**
         - Integrated `expo-location` for cross-platform geolocation and reverse geocoding.
         - Refactored `features/public/components/ReportLocationInput.tsx` to auto-detect user location.
-        - Added interactive Map selection mode in the report form, allowing users to move the map to pinpoint incidents (Center Crosshair pattern).
+        - Added interactive Map selection mode in the report form (Center Crosshair pattern).
         - Updated `Map.native.tsx` to support `onRegionChangeComplete` and children for overlays.
-    - **Incident Report Refactor:** Updated `features/public/components/ReportPhotoInput.tsx` to use the new `ImageInput` component with `multiInput` enabled.
+    - **Incident Report Refactor:** 
+        - Updated `features/public/components/ReportPhotoInput.tsx` to use the new `ImageInput` component.
+        - Added `ReportHeader.tsx` for consistent badge/title display.
+        - Integrated "Additional Information" toggle (checkbox) in `ReportForm.tsx`.
+    - **Theme & UI Consistency:**
+        - Migrated multiple components (IncidentCard, IncidentBottomSheet, TrackingView, etc.) from `Button` to `ThemedButton`.
+        - Added new CSS variables in `global.css`: `--color-app-background-tertiary` and `--color-app-background-mute`.
 - **Technical Decisions:**
-    - **Map Platform Divergence:** Used `iframe` for Web and `react-native-maps` for Native to provide the best possible experience on each platform without complex polyfills.
-    - **Center Crosshair Pattern:** Implemented for location picking to avoid the UX complexity of dragging markers, especially on smaller screens.
-    - **State Management:** Added `userAddress` and `userCoordinates` to `PublicContext` to persist the detected/selected location throughout the reporting flow.
-    - **Web Geocoding Fix:** Implemented a direct fetch to the **Nominatim (OpenStreetMap)** API in `ReportLocationInput.tsx` for Web platforms. This bypasses the `expo-location` limitation/removal of the bundled Google Geocoding service on Web (SDK 49+), ensuring the app remains functional without requiring a Google Maps API key for basic address detection during prototyping.
+    - **Map Platform Divergence:** Used `iframe` for Web and `react-native-maps` for Native to provide the best possible experience on each platform.
+    - **Center Crosshair Pattern:** Implemented for location picking to avoid the UX complexity of dragging markers.
+    - **State Management:** Added `userAddress` and `userCoordinates` to `PublicContext` to persist location data throughout the reporting flow.
+    - **Web Geocoding Fix:** Implemented direct fetch to **Nominatim (OpenStreetMap)** API in `ReportLocationInput.tsx` for Web platforms to bypass `expo-location` limitations on web.
+- **Resolved Issues:**
+    - Fixed bug in `IncidentSelectionScreen.tsx` where `setSelectedType` was incorrectly commented out.
+    - Added missing `expo-checkbox`, `expo-image-picker`, and `expo-location` dependencies.
+### Maps Migration to Leaflet (March 26, 2026)
+- **Status:** **REFACTORED**
+- **Key Changes Implemented:**
+    - **Dependency Policy:** While `react-native-leaflet-view` is installed, the project now uses a custom bridge component (`components/ui/LeafletView.tsx`) to avoid bundling issues caused by hardcoded asset paths in the library.
+    - **Infrastructure Setup:** 
+        - Leaflet static asset moved to `assets/leaflet/index.html`.
+        - Custom `LeafletView` component implemented using `react-native-webview` to handle message bridging (MAP_READY, onMoveEnd, etc.).
+    - **Cross-Platform Consistency:** Both `Map.native.tsx` and `Map.web.tsx` utilize the local custom `LeafletView`.
+    - **Movable Pin Implementation:**
+        - Completed `components/ui/MapMoveablePin.tsx` using `React.cloneElement` to bridge map movement events to the `onPinChange` callback.
+        - Refactored `features/public/components/ReportLocationInput.tsx` to use the new `MapMoveablePin`.
+    - **Marker Adaptation:** Updated map markers to use string-based icons (emojis) for WebView compatibility.
+- **Learnings:**
+    - **Library Bundling Issues:** Hardcoded `require` calls in library source code (especially for assets) can break Metro bundling if paths don't match the local environment.
+    - **Custom Bridge Solution:** Implementing a custom `WebView` bridge provides more control over asset resolution and avoids reliance on brittle third-party internals.
+    - **Asset Path Stability:** Placing assets in a dedicated subfolder (e.g., `assets/leaflet/index.html`) is cleaner than root-level placement.
 ---
-*Last Updated: March 25, 2026*
+*Last Updated: March 26, 2026*

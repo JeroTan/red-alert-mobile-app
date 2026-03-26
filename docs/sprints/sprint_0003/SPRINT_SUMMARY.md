@@ -8,8 +8,11 @@ Implement cross-platform map functionality (focusing on Web support) and a reusa
 - [x] Create reusable `ImageInput` component with `expo-image-picker`
 - [x] Implement multi-image selection and preview
 - [x] Refactor Incident Report form to use new `ImageInput`
-- [ ] Verify map functionality on Web and Native
+- [x] Migrate to Leaflet for cross-platform consistency
+- [x] Implement MapMoveablePin component
+- [x] Verify map functionality on Web and Native
 
 ## User Stories
 - `user_story_0008.md`: Web Map Implementation
 - `user_story_0009.md`: Image Input Component
+- `user_story_0010.md`: Leaflet Migration & Moveable Pin

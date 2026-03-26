@@ -29,11 +29,16 @@ This document tracks high-level concepts, architectural patterns, and specialize
 
 ## 🗺️ Maps & Interaction
 
-### 4. `react-native-maps`
-- **Concept:** A library that wraps native Google Maps (Android) and Apple Maps (iOS).
-- **`<MapView />`:** The main container.
-- **`<Marker />`:** Represents a point on the map.
-- **Best Practice:** Use a `region` or `initialRegion` to center the map on a specific location (latitude/longitude).
+### 4. `react-native-leaflet-view`
+- **Concept:** A library that renders a Leaflet map inside a `WebView`. It provides a consistent cross-platform experience (iOS, Android, and Web).
+- **Setup:** Requires a local `leaflet.html` asset to be bundled with the app.
+- **Markers:** Prefers simple string-based icons (emojis or URLs) when running inside the WebView context.
+- **Event Handling:** Uses a message-based system (`onMessageReceived`) to bridge map events like panning and zooming back to React Native.
+
+### 5. Moveable Pin Pattern (`MapMoveablePin`)
+- **Concept:** Instead of dragging a marker on a map, the user pans the map under a static pin fixed in the center of the viewport.
+- **Implementation:** Uses `React.cloneElement` to inject event listeners into the Map component. When the map's region changes, the coordinates are captured and passed to a callback (`onPinChange`).
+- **Benefit:** Offers a much more intuitive UX for selecting precise locations on mobile.
 
 ### 5. `gorhom/bottom-sheet`
 - **Concept:** A high-performance "drawer" that slides up from the bottom of the screen.
