@@ -1,5 +1,6 @@
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/theme.css";
+@import "tailwindcss/preflight.css";
+@import "nativewind/theme";
 @import "tailwindcss/utilities.css";
 
 /* Define content sources for Tailwind v4 */
@@ -64,5 +65,3 @@
   --color-app-text-light: #4b5563;
   --color-app-divider: #303d52;
 }
-
-@import "nativewind/theme";

@@ -15,6 +15,7 @@
     "@expo/vector-icons": "^15.0.3",
     "@gorhom/bottom-sheet": "^5.2.8",
     "@react-native-async-storage/async-storage": "^3.0.1",
+    "@react-native-async-storage/expo-with-async-storage": "^1.0.0",
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",
     "@react-navigation/native": "^7.1.8",
@@ -74,6 +75,7 @@
   "overrides": {
     "lucide-react-native": {
       "react": "^19"
-    }
+    },
+    "lightningcss": "1.30.1"
   }
 }
