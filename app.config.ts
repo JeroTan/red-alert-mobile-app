@@ -10,10 +10,18 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   scheme: "alertapmobileapp",
   userInterfaceStyle: "light",
   newArchEnabled: true,
+  extra: {
+    eas: {
+      projectId: "edd0c1d7-395c-4a61-a11d-b99d82bf14ff",
+    },
+  },
   ios: {
+    bundleIdentifier: "com.toyotamobilitysolutionsph.alertapmobileapp",
     supportsTablet: true,
     infoPlist: {
-      NSLocationWhenInUseUsageDescription: "This app needs access to your location to help responders find you during an emergency.",
+      NSLocationWhenInUseUsageDescription:
+        "This app needs access to your location to help responders find you during an emergency.",
+      ITSAppUsesNonExemptEncryption: false,
     },
   },
   android: {
@@ -22,6 +30,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       "ACCESS_FINE_LOCATION",
       "FOREGROUND_SERVICE",
     ],
+    package: "com.toyotamobilitysolutionsph.alertapmobileapp",
     adaptiveIcon: {
       backgroundColor: "#E6F4FE",
       foregroundImage: "./assets/images/android-icon-foreground.png",
@@ -60,76 +69,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
           "./assets/fonts/toyota-type/ToyotaType-Italic.otf",
           "./assets/fonts/toyota-type/ToyotaType-SemiboldIt.otf",
         ],
-        android: {
-          fonts: [
-            {
-              fontFamily: "ToyotaType",
-              fontDefinitions: [
-                {
-                  path: "./assets/fonts/toyota-type/ToyotaType-Regular.otf",
-                  weight: 400,
-                },
-                {
-                  path: "./assets/fonts/toyota-type/ToyotaType-Bold.otf",
-                  weight: 700,
-                },
-                {
-                  path: "./assets/fonts/toyota-type/ToyotaType-Light.otf",
-                  weight: 300,
-                },
-                {
-                  path: "./assets/fonts/toyota-type/ToyotaType-Semibold.otf",
-                  weight: 600,
-                },
-                {
-                  path: "./assets/fonts/toyota-type/ToyotaType-Italic.otf",
-                  weight: 400,
-                  style: "italic",
-                },
-                {
-                  path: "./assets/fonts/toyota-type/ToyotaType-SemiboldIt.otf",
-                  weight: 600,
-                  style: "italic",
-                },
-              ],
-            },
-          ],
-        },
-        ios: {
-          fonts: [
-            {
-              fontFamily: "ToyotaType",
-              fontDefinitions: [
-                {
-                  path: "./assets/fonts/toyota-type/ToyotaType-Regular.otf",
-                  weight: 400,
-                },
-                {
-                  path: "./assets/fonts/toyota-type/ToyotaType-Bold.otf",
-                  weight: 700,
-                },
-                {
-                  path: "./assets/fonts/toyota-type/ToyotaType-Light.otf",
-                  weight: 300,
-                },
-                {
-                  path: "./assets/fonts/toyota-type/ToyotaType-Semibold.otf",
-                  weight: 600,
-                },
-                {
-                  path: "./assets/fonts/toyota-type/ToyotaType-Italic.otf",
-                  weight: 400,
-                  style: "italic",
-                },
-                {
-                  path: "./assets/fonts/toyota-type/ToyotaType-SemiboldIt.otf",
-                  weight: 600,
-                  style: "italic",
-                },
-              ],
-            },
-          ],
-        },
       },
     ],
   ],
