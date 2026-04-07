@@ -1,6 +1,5 @@
-import { AuthRepositoryAPI } from "@/adapter/infrastructure/auth/AuthRepositoryApi";
-import { SessionRepositoryApi } from "@/adapter/infrastructure/auth/SessionRepositoryApi";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { hasSession } from "@/adapter/application/auth/hasSession";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export type AuthContextType = {
   isLoggedIn: boolean;
@@ -16,15 +15,11 @@ export default function AuthContextProvider({
   isLoginInitialState?: boolean;
   children?: React.ReactNode;
 }) {
-  const authRepo = useRef(new AuthRepositoryAPI());
-  const sessionRepo = useRef(new SessionRepositoryApi());
-
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(isLoginInitialState);
 
   useEffect(() => {
     (async () => {
-      const hasSession = await sessionRepo.current.hasSession();
-      setIsLoggedIn(hasSession);
+      setIsLoggedIn(await hasSession());
     })();
   }, []);
 

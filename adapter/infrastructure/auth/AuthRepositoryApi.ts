@@ -49,7 +49,7 @@ import { redAlrertApiAxios } from "@/library/axios";
 import { LogicError } from "@/utilities/error/LogicError";
 import uuid from "react-native-uuid";
 
-export class AuthRepositoryAPI implements AuthRepository {
+export class AuthRepositoryApi implements AuthRepository {
   async signInWithEmailAndPassword(form: {
     email: UserEmail;
     password: UserPassword;
@@ -63,6 +63,7 @@ export class AuthRepositoryAPI implements AuthRepository {
         404: "User not found",
         401: "Invalid credentials",
       };
+      console.log("Login error:", result.status, result.data);
       throw new LogicError(
         `Failed to sign in: ${errorMessages[result.status as keyof typeof errorMessages] ?? "Unknown Error"}`,
         "UNKNOWN" as const,
@@ -200,5 +201,13 @@ export class AuthRepositoryAPI implements AuthRepository {
         : undefined,
     );
   }
-  async logout(form: { refresh_token: SessionRefreshToken }) {}
+  async logout(form: { refresh_token: SessionRefreshToken }) {
+    const result = await redAlrertApiAxios.post("/auth/logout", {
+      refresh_token: form.refresh_token.value,
+    });
+    if (result.status !== 200) {
+      console.log("Logout error:", result.status, result.data);
+      throw new LogicError("Failed to log out", "UNKNOWN");
+    }
+  }
 }

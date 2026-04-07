@@ -3,6 +3,7 @@ import StackGuardedRouting from "@/features/stack-guard/StackGuardedRouting";
 import { useCheckCurrentAuth } from "@/hooks/useCheckCurrentAuth";
 import { useToyotaFonts } from "@/hooks/useToyotaFonts";
 import { AppModeProvider } from "@/store/state/AppModeContext";
+import { LoadingProvider } from "@/store/state/LoadingContext";
 import { ToastContextProvider } from "@/store/state/ToastProviderContext";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
@@ -33,8 +34,10 @@ export default function RootLayout() {
             <AppModeProvider>
               <ThemeProvider value={DefaultTheme}>
                 <ToastContextProvider>
-                  <StackGuardedRouting />
-                  <StatusBar style="dark" />
+                  <LoadingProvider>
+                    <StackGuardedRouting />
+                    <StatusBar style="dark" />
+                  </LoadingProvider>
                 </ToastContextProvider>
               </ThemeProvider>
             </AppModeProvider>

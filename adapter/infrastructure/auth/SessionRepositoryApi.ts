@@ -1,15 +1,5 @@
 import { Session } from "@/domain/auth/entity/Session";
 import { SessionRepository } from "@/domain/auth/repository/SessionRepository";
-import { SessionAccessToken } from "@/domain/auth/value-objects/SessionAccessToken";
-import { SessionExpiresIn } from "@/domain/auth/value-objects/SessionExpiresIn";
-import { SessionId } from "@/domain/auth/value-objects/SessionId";
-import { SessionRefreshToken } from "@/domain/auth/value-objects/SessionRefreshToken";
-import { RoleLite } from "@/domain/role/entity/Role";
-import { RoleName } from "@/domain/role/value-objects/RoleName";
-import { UserEmail } from "@/domain/user/value-objects/UserEmail";
-import { UserFirstName } from "@/domain/user/value-objects/UserFirstName";
-import { UserId } from "@/domain/user/value-objects/UserId";
-import { UserLastName } from "@/domain/user/value-objects/UserLastName";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SecureStore from "expo-secure-store";
 import { Platform } from "react-native";
@@ -41,24 +31,7 @@ export class SessionRepositoryApi implements SessionRepository {
       throw new Error("No session found.");
     }
     const sessionObj = JSON.parse(sessionResult);
-    const session = new Session(
-      new SessionId(sessionObj.id),
-      new SessionAccessToken(sessionObj.access_token),
-      new SessionRefreshToken(sessionObj.refresh_token),
-      new SessionExpiresIn(new Date(sessionObj.expires_in)),
-      {
-        id: new UserId(sessionObj.user.id),
-        email: new UserEmail(sessionObj.user.email),
-        first_name: new UserFirstName(sessionObj.user.first_name),
-        last_name: new UserLastName(sessionObj.user.last_name),
-        roles: sessionObj.user.roles.map(
-          (roleData: { name: RoleLite["name"]["value"] }) => {
-            return new RoleLite(new RoleName(roleData.name));
-          },
-        ),
-      },
-    );
-    return session;
+    return sessionObj as Session;
   }
   async storeSession(session: Session): Promise<void> {
     if (Platform.OS === "web") {

@@ -1,4 +1,4 @@
-import { signInWithPassword } from "@/adapter/application/validation/signInWithPassword";
+import { signInWithPassword } from "@/adapter/application/auth/signInWithPassword";
 import { ThemedButton } from "@/components/ui/ThemedButton";
 import { ThemedText } from "@/components/ui/ThemedText";
 import { cn } from "@/components/ui/ThemedView";
