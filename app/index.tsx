@@ -1,12 +1,21 @@
-import { useAppMode } from "@/store/state/AppModeContext";
-import { Redirect } from "expo-router";
-import React from "react";
+import { Text, View } from "react-native";
 
 export default function AppRouter() {
-  const { mode } = useAppMode();
-
-  if (mode === "public") {
-    return <Redirect href="/public" />;
-  }
-  return <Redirect href="/responder" />;
+  return (
+    <View>
+      <Text className="text-2xl font-bold">Hello, world!</Text>
+      <Text className="text-2xl font-bold">Hello, world!</Text>
+      <Text className="text-2xl font-bold">Hello, world!</Text>
+      <Text className="text-2xl font-bold">Hello, world!</Text>
+      <Text className="text-2xl font-bold">Hello, world!</Text>
+      <Text className="text-2xl font-bold">Hello, world!</Text>
+      <Text className="text-2xl font-bold">Hello, world!</Text>
+      <Text className="text-2xl font-bold">Hello, world!</Text>
+      <Text className="text-2xl font-bold">Hello, world!</Text>
+      <Text className="text-2xl font-bold">Hello, world!</Text>
+      <Text className="text-2xl font-bold">Hello, world!</Text>
+      <Text className="text-2xl mt-50">Hello, world!</Text>
+      <Text className="text-2xl mt-100">Hello, world!</Text>
+    </View>
+  );
 }
