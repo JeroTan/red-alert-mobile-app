@@ -11,6 +11,8 @@ import { SplashScreen } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+
+//@ts-ignore
 import "../style/global.css";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.

@@ -14,7 +14,7 @@ export function PublicBottomNav({ activeTab }: PublicBottomNavProps) {
   return (
     <View className="flex-row border-t border-app-background-secondary py-4 bg-app-background px-12 justify-between items-center">
       <Link href={isLoggedIn ? "/public/profile" : "/auth"}>
-        <TouchableOpacity className="items-center">
+        <View className="items-center">
           <User
             size={24}
             {...{ color: activeTab === "profile" ? "#EB0A1E" : "#58595B" }}
@@ -27,7 +27,7 @@ export function PublicBottomNav({ activeTab }: PublicBottomNavProps) {
           >
             {isLoggedIn ? "Profile" : "Login"}
           </Text>
-        </TouchableOpacity>
+        </View>
       </Link>
 
       <Link href="/public/home">

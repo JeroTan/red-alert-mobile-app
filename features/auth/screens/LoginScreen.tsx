@@ -9,16 +9,17 @@ import { LoginForm } from "../registration/LoginForm";
 export default function LoginScreen() {
   return (
     <ThemedView className="flex-1">
-      <View className="py-6 px-6">
-        <Link href="/" className="flex flex-row gap-x-2">
-          <View className=" text-app-text-primary">
-            <Home size={21} />
+      <View className="py-6 px-6 mt-5">
+        <Link href="/" className=" -translate-y-1">
+          <View className="pr-2">
+            <Home size={20} />
           </View>
-          <ThemedText>Go back to home</ThemedText>
+
+          <ThemedText className="ml-5">Go back to home</ThemedText>
         </Link>
       </View>
       <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
+        contentContainerStyle={{ flexGrow: 0.5 }}
         className="px-6"
         showsVerticalScrollIndicator={false}
       >
@@ -31,7 +32,7 @@ export default function LoginScreen() {
               </ThemedText>
             </View>
             <ThemedText className="text-4xl font-black tracking-tighter">
-              ALERT<ThemedText className="text-brand-primary">AP</ThemedText>
+              ALER<ThemedText className="text-brand-primary">TAP</ThemedText>
             </ThemedText>
             <ThemedText className="text-app-text-secondary font-medium mt-1">
               Emergency Response Platform

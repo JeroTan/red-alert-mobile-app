@@ -1,8 +1,14 @@
 import { FontDisplay, useFonts } from "expo-font";
 import { SplashScreen } from "expo-router/build/exports";
 import { useEffect } from "react";
+import { Platform } from "react-native";
 
 export function useToyotaFonts() {
+  if(Platform.OS !== "web"){
+    return true;
+  }
+
+
   const [fontsLoaded, fontError] = useFonts({
     ToyotaType: {
       uri: require("../assets/fonts/toyota-type/ToyotaType-Regular.otf"),
